@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Real Fake Detection</title>
+  
+  <!-- <script>
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let message = document.getElementById("message").value.trim();
+  
+      if (name === "" || email === "" || message === "") {
+        alert("Please fill out all required fields before submitting.");
+        return false; // Prevent form submission
+      }
+  
+      alert("Message sent successfully!");
+      return true; // Allow form submission
+    }
+  </script> -->
+  
+   <style>
+    :root{
+    --main-color: #4CAF50;
+    --black:#1E1E1E;
+    --bg:#2C3E50;
+    --ref:#ECF0F1;
+    --border:.1rem solid rgba(255,255,255,.3);
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+  }
+  html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+  }
+  section{
+    padding:2rem 7%;
+  }
+  body{
+    min-height: 100vh;
+    background: var(--black);
+    background-size: cover;
+    background-position: center;
+  }
+  .header{
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1.5rem 7%;
+    border-bottom: var(--border);
+    position: fixed;
+    top:0; left: 0; right: 0;
+    z-index: 1000;
+  }
+  .header .navbar a{
+    margin:0 3rem;
+    font-size: 1.6rem;
+    color: var(--ref);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .header .navbar a:hover{
+    color: var(--main-color);
+    border-bottom: .1rem solid var(--main-color);
+    padding-bottom: .5rem;
+  }
+  .Logo{
+    font-size: 3rem;
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  /* Home */
+  .home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:url(image.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .home .content{
+    max-width: 60rem;
+  }
+  
+  .home .content h1{
+    font-size: 6rem;
+    text-transform: uppercase;
+    color:var(--main-color);
+  }
+  .about .row{
+    display: flex;
+    align-items: center;
+    background:var(--black);
+    flex-wrap: wrap;
+  }
+  .home .content p{
+    font-size: 2rem;
+    font-weight: lighter;
+    line-height: 1.8;
+    padding:1rem 0;
+    color: var(--ref);
+  }
+  /* About */
+  .about .row .image{
+    flex:1 1 45rem;
+  }
+  
+  .about .row .image img{
+    width: 100%;
+  }
+  .about .row .content{
+    flex:1 1 45rem;
+    padding:2rem;
+  }
+  .image {
+    
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Deepfake_Example.jpg/800px-Deepfake_Example.jpg');
+}
+
+  .about h1{
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: var(--main-color);
+    text-align: center;
+    text-decoration: underline;
+  }
+  .about .row .content h3{
+    font-size: 3rem;
+    color:wheat;
+  }
+  
+  .about .row .content p{
+    font-size: 1.6rem;
+    color:var(--ref);
+    padding:1rem 0;
+    line-height: 1.8;
+  }
+
+  /* Contact details */
+
+    #contact{
+        color: var(--main-color);
+        font-size: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #388E3C;
+    }
+    .fcontent {
+      color: white;
+      font-size: 0.9em;
+      text-align: center;
+      font-family: fantasy;
+      padding: 1.5%;
+
+    }
+
+   </style>
+</head>
+
+<header class="header">
+  <a href="#" class="Logo">Real-Fake Image Detection</a>
+  <nav class="navbar">
+    <a href="#about">About Model</a>
+    <a href="/login">Login</a>
+    <a href="/signupform">Sign Up</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+</header>
+
+<body>
+    <section class="home" id="home">
+        <div class="content">
+          <h1>Welcome to <br>Real-Fake Image Detection </br> model</h1>
+          <p>Our AI-powered model tackles digital deception and verifies image authenticity with precision.</p>
+        </div>
+    </section>
+    
+    <section class="about" id="about">
+
+        <h1 class="heading"> About our model </h1>
+    
+        <div class="row">
+    
+          <div class="image"></div>
+    
+          <div class="content">
+            <h3>What is real and fake images, How our model works ?</h3>
+            <p>In an era where digital manipulation is becoming increasingly sophisticated, our AI-powered model provides a robust solution to identify and classify real and fake images with precision. Whether it's deepfakes, AI-generated images, or subtly altered visuals, our system is designed to detect them effectively.</p>
+            
+            <p><b>Deep Learning and AI at the Core</b><br>
+              Leveraging cutting-edge deep learning techniques, our model is trained on vast datasets to recognize the subtle inconsistencies and anomalies that indicate image tampering. From analyzing pixel distributions to detecting inconsistencies in lighting and textures, our AI continuously evolves to stay ahead of new manipulation methods.</p>
+    
+            <p><b>Real-World Applications</b><br>
+              This model is ideal for journalists, content creators, cybersecurity experts, and law enforcement agencies aiming to combat misinformation, detect forgeries, and ensure media authenticity. By integrating our detection system, organizations can enhance their verification processes and prevent the spread of deceptive content.</p>
+    
+            <p><b>How It Works</b><br>
+              Our system processes an image through multiple deep learning models, each designed to detect specific types of manipulation. It evaluates metadata, examines texture patterns, and applies convolutional neural networks (CNNs) to determine whether an image has been artificially modified. The results provide clear insights into the authenticity of the image.</p>
+    
+            <p>Our mission is to foster trust in digital content by providing a reliable and efficient tool for identifying fake images. Whether you're an individual concerned about digital misinformation or an organization looking to verify media authenticity, our Real-Fake Image Detection model is here to help.</p>
+    
+            <p>Join us in the fight against digital deception. Let's create a more transparent and secure digital world together!</p>
+          </div>
+    
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Feel free to reach out for any queries or collaboration opportunities.</p>
+    
+        <form action="#" method="post" onsubmit="return validateForm()" id="contact-form" class="my-login-validation" novalidate>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <br>
+            <div class="form-group">
+              {% with messages = get_flashed_messages(with_categories=True) %}
+              {% if messages %}
+              {% for category, message in messages %}
+              <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+              {% endif %}
+              {% endwith %}
+              </div>
+              <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+
+    </div>
+      <div class="fcontent">
+        <h3>Created by Bibek Kumar. | all rights reserved</h3>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>

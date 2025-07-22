@@ -1,0 +1,201 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Real vs Fake Face Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://miro.medium.com/v2/resize:fit:1000/0*mwHttjM9YUd0RYU0.jpg") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #4CAF50;
+            max-width: 850px;
+            max-height: 1100px;
+            margin: auto;
+            backdrop-filter: blur(15px); /* Increased blur effect */
+        }
+        h1 {
+            color: #000000;
+            font-size: 45px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p {
+            color: #2C3E50;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 25px;
+            margin-top: 10px;
+        }
+        .upload-box {
+            border: 2px dashed #007bff;
+            padding: 30px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .upload-box:hover {
+            background-color: #4CAF50;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .btn {
+            margin-top: 20px;
+            background-color: #2C3E50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real or Fake Face Image Detection Tool</h1>
+        <p><b>This tool helps you determine whether a given face image is real or fake using advanced deep learning techniques. Upload an image and let our AI analyze it for authenticity.</b></p>
+        <br>
+        <label class="upload-box" for="file-upload">Click to Upload Image</label>
+        <input type="file" id="file-upload" accept="image/*">
+        <br><br>
+        <button class="btn">Submit</button><br><br>
+        <div class="prediction-box" id="prediction-result">Prediction result will appear here.</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Real vs Fake Face Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("https://miro.medium.com/v2/resize:fit:1000/0*mwHttjM9YUd0RYU0.jpg") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #4CAF50;
+            max-width: 850px;
+            margin: auto;
+            backdrop-filter: blur(15px);
+        }
+        h1 {
+            color: #000000;
+            font-size: 45px;
+        }
+        p {
+            color: #2C3E50;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .upload-box {
+            border: 2px dashed #007bff;
+            padding: 30px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .upload-box:hover {
+            background-color: #4CAF50;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .btn {
+            margin-top: 20px;
+            background-color: #2C3E50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #4CAF50;
+        }
+        .prediction-box {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            display: none;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 300px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real or Fake Face Image Detection Tool</h1>
+        <p>This tool helps you determine whether a given face image is real or fake using advanced deep learning techniques.</p>
+        
+        <!-- Image Upload Form -->
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <label class="upload-box" for="file-upload">Click to Upload Image</label>
+            <input type="file" id="file-upload" name="file" accept="image/*" required onchange="previewImage(event)">
+            <br><br>
+            <img id="image-preview" src="#" alt="Uploaded Image">
+            <br>
+            <button type="submit" class="btn">Predict</button>
+        </form>
+
+        <!-- Display prediction result only if it exists -->
+        {% if result is defined %}
+            <div class="prediction-box" id="prediction-result" style="display: block;">
+                Prediction: <span>{{ result }}</span>
+            </div>
+        {% endif %}
+ <br>
+        {% if error is defined %}
+            <p style="color: red; font-size: 18px;">{{ error }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var img = document.getElementById('image-preview');
+                img.src = reader.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
